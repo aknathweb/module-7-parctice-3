@@ -52,11 +52,11 @@ const displayPhones = (phones, all = false) => {
     toggleSpinner(false);
 }
 
-const processSearch = (all) => {
+const processSearch = () => {
     toggleSpinner(true);
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
-    loadPhones(searchText, all);
+    loadPhones(searchText);
 }
 
 // handle search button click
@@ -85,7 +85,8 @@ const toggleSpinner = isLoading => {
 
 // not the best way to load show All
 document.getElementById('btn-show-all').addEventListener('click', function () {
-    processSearch(true);
+    const search_text = document.getElementById('search-field').value;
+    loadPhones(search_text == "" ? "apple" : search_text, true);
 })
 
 const loadPhoneDetails = async id => {
